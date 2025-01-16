@@ -1,0 +1,13 @@
+# Ignore vendor directory (Composer dependencies)
+vendor/
+
+# Ignore Composer lock file (optional)
+composer.lock
+
+# Ignore Composer cache files
+/.composer/cache
+
+# Ignore other common PHP-generated files
+*.log
+*.cache
+*.tmp
