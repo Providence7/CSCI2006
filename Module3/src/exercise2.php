@@ -34,16 +34,18 @@
             color: red;
         }
         table {
+          
             border-collapse: collapse;
-            width: 25%;
+            width: 50%;
             margin: 10px auto;
         }
          td {
-        
-            padding: 4px ;
+            padding-top: 20px ;
             text-align: center;
         }
         th {
+            padding-top: 30px;
+            padding-bottom: 15px;
             border-bottom: 1px solid black;
         }
      
