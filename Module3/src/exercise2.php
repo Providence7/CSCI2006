@@ -55,7 +55,7 @@
 <body>
     <?php
         final class Module32 {
-            public function exercise2(){
+            public function exercise2(): void{
                 // Write your code for this exercise here.
                 $name1 = "John";
                 $salary1 = "$150,000";

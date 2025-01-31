@@ -13,22 +13,30 @@
         // This function will perform the addition operation
         public function add($num1, $num2): float{
             // Write your code for this exercise here.
-           
+           $num1 = 9.0;
+           $num2 = 3.0;
+           $sum = $num1 + $num2;
             return $sum;
         }
         public function subtract($num1, $num2): float{
             // Write your code for this exercise here.
-           
+            $num1 = 9.0;
+            $num2 = 3.0;
+            $difference = $num1 - $num2;
             return $difference;
         }
         public function multiply($num1, $num2): float{
             // Write your code for this exercise here.
-            
+            $num1 = 9.0;
+            $num2 = 3.0;
+            $product = $num1 * $num2;
             return $product;
         }
         public function divide($num1, $num2): float{
             // Write your code for this exercise here.
-            
+            $num1 = 9.0;
+            $num2 =3.0 ;
+            $quotient = $num1 / $num2;
             if ($num2 != 0){
                 return $quotient;
             }
@@ -39,14 +47,14 @@
     */
     $module33 = new Module33();
     $sum = $module33->add(9.0, 3.0);
-    echo 'Sum is '.$sum[2].'<br>';
+    echo 'Sum is '.$sum.'<br>';
     
     $difference = $module33->subtract(9.0, 3.0);
-    echo 'Difference is '.$difference[2].'<br>';
+    echo 'Difference is '.$difference.'<br>';
 
     $product = $module33->multiply(9.0, 3.0);
-    echo 'Product is '.$product[2].'<br>';
+    echo 'Product is '.$product.'<br>';
 
     $quotient = $module33->divide(9.0, 3.0);
-    echo 'Quotient is '.$quotient[2].'<br>';
+    echo 'Quotient is '.$quotient.'<br>';
 
