@@ -23,7 +23,7 @@ final class Module3Test extends TestCase{
         //$result = $obj->exercise1();
         
         $is_true = str_contains($scriptContent, '$name =') && str_contains($scriptContent, '$age =') && str_contains($scriptContent, '$address =');
-        $echo_in_file = str_contains($scriptContent,'print $name." is ". $age." years ald and lives at ".$address;');
+        $echo_in_file = str_contains($scriptContent,'print $name." is ". $age." years old and lives at ".$address;');
         
         $this->assertSame(true, $is_true);
         $this->assertSame(true, $echo_in_file);
