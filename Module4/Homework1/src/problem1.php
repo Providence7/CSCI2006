@@ -15,16 +15,20 @@ declare(strict_types=1);
 
 final class Problem1 {
     public function get_user_info(): array {
-        // Write your code to get the user information and return it as an array.
+        $firstName = readline("Enter your first name: ");
+        $lastName = readline("Enter your last name: ");
+        $dateOfBirth = readline("Enter your date of birth (YYYY-MM-DD): ");
 
-        return $user_info;
+        return $user_info =  [
+            'firstname' => trim($firstName),
+            'lastname' => trim($lastName),
+            'dob' => trim($dateOfBirth)
+        ];
     }
     public function generate_password($data): string {
-        // Write your code to generate a random password from the user information.
-
-        return $password;
+        $raw_string = $data['firstname'] . $data['lastname'] . str_replace('-', '', $data['dob']);
+        return $password =  substr(str_shuffle($raw_string), 0, 8);
     }
-   // You may want to write other helper functions as necessary.
 } 
 /* The following code will help you view your output in web browsers.
     DO NOT EDIT or REMOVE it.

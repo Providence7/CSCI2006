@@ -1,6 +1,37 @@
 <?php 
 declare(strict_types=1);
 include 'tictactoe.php';
+$board = isset($_GET['board']) ? json_decode($_GET['board'], true) : null;
+$turn = isset($_GET['turn']) ? (int)$_GET['turn'] : rand(1, 2);
+
+// Start a new game if there's no board
+$game = new TicTacToe($board);
+$board = $game->get_board();
+$message = "Player $turn's turn.";
+
+// Handle player move
+if (isset($_GET['move'])) {
+    $pos = (int)$_GET['move'];
+    $symbol = ($turn === 1) ? 'X' : 'O';
+
+    // Check if the position is available
+    if ($game->check_availability($pos)) {
+        $game->move($pos, $symbol);
+        $board = $game->get_board();
+
+        if ($game->check_wins()) {
+            $message = "Player $turn wins!";
+        } else {
+            $turn = $game->take_turns($turn);
+            $message = "Player $turn's turn.";
+        }
+    } else {
+        $message = "Position already taken. Choose another.";
+    }
+}
+
+// Convert board to JSON for passing via URL
+$boardJson = json_encode($board);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +78,41 @@ include 'tictactoe.php';
     Note: You can write the functions in a separate file and then include that file at the top
     of this file. 
 -->
-    
+<title>Tic Tac Toe</title>
+    <style>
+        table { border-collapse: collapse; margin-top: 10px; }
+        td { width: 50px; height: 50px; text-align: center; border: 1px solid black; font-size: 24px; cursor: pointer; }
+        button { margin-top: 10px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h2>Tic Tac Toe</h2>
+    <p id="message"><?php echo $message; ?></p>
+
+    <table>
+        <?php foreach ($board as $row): ?>
+            <tr>
+                <?php foreach ($row as $cell): ?>
+                    <td onclick="makeMove(<?php echo $cell; ?>)">
+                        <?php echo ($cell === 'X' || $cell === 'O') ? $cell : ''; ?>
+                    </td>
+                <?php endforeach; ?>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <br>
+    <button onclick="restartGame();">Restart Game</button>
+
+    <script>
+        function makeMove(position) {
+            window.location.href = 'problem3.php?move=' + position + '&board=<?php echo urlencode($boardJson); ?>&turn=<?php echo $turn; ?>';
+        }
+
+        function restartGame() {
+            window.location.href = 'problem3.php';
+        }
+    </script>
 
     
 </body>

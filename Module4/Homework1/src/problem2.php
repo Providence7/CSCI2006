@@ -14,15 +14,28 @@ declare(strict_types=1);
  */
 
  final class Problem2 {
+    public int $secret_number;
     public function get_user_inputs(): array {
-        // Get the start and end numbers. Return an array 
-        // containing the start and end numbers.
+        $start = (int) readline("Enter the start number: ");
+        $end = (int) readline("Enter the end number: ");
+        
+        if ($start >= $end) {
+            die("Invalid range. Start number must be less than the end number.\n");
+        }
+        
+        $this->secret_number = rand($start, $end);
+        return $data =  [$start, $end];
 
-        return $data;
+        
     }
-    public function compare_guess($start, $end, $guess): string {
-        // Write your code here. This function must return `correct`, `high`, or `low`
-        // depending on the comparison result between the guess and the secret number.
+    public function compare_guess(int $guess): string {
+        if ($guess === $this->secret_number) {
+            return "correct";
+        } elseif ($guess > $this->secret_number) {
+            return "high";
+        } else {
+            return "low";
+        }
     }
  }
  // Run the program locally.
