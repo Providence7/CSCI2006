@@ -4,31 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup Form</title>
+    <title>Project Form</title>
     <link rel="stylesheet" href="assignment.css">
 </head>
 <body>
 
 <div class="container">
-    <h2>Signup Form</h2>
+    <h2>Project validation Form</h2>
 
-    <!-- Display Error or Success Message -->
+     <!-- Display Error or Success Message  -->
     <?php if (isset($_SESSION["message"])): ?>
         <p class="<?php echo $_SESSION["message_type"]; ?>">
             <?php echo $_SESSION["message"]; ?>
         </p>
-        <?php unset($_SESSION["message"]); // Clear message after displaying ?>
+        <?php unset($_SESSION["message"]); ?>
         <?php unset($_SESSION["message_type"]); ?>
     <?php endif; ?>
 
     <form action="assignment.php" method="POST" class="form-grid">
         <div>
-            <label for="first_name">First Name:</label>
+            <label for="first_name">First_Name:</label>
             <input type="text" id="first_name" name="first_name">
         </div>
 
         <div>
-            <label for="last_name">Last Name:</label>
+            <label for="last_name">Last_Name:</label>
             <input type="text" id="last_name" name="last_name">
         </div>
 
