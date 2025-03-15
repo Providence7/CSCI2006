@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Password validation
     if (strlen($password) < 8) {
-        $_SESSION["message"] = "Password must be at least 6 characters long.";
+        $_SESSION["message"] = "Password must be greater than 8.";
         $_SESSION["message_type"] = "error";
         header("Location: index.php");
         exit();
