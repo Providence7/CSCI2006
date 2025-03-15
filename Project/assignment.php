@@ -1,58 +1,62 @@
 <?php
-session_start(); // Start session to store messages
+session_start();
 
-// Check if form is submitted using POST method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+    // Collect form data
     $first_name = trim($_POST["first_name"]);
     $last_name = trim($_POST["last_name"]);
     $username = trim($_POST["username"]);
-    $password = $_POST["password"]; 
+    $password = trim($_POST["password"]);
     $email = trim($_POST["email"]);
-    $gender = $_POST["gender"];
+    $gender = trim($_POST["gender"]);
     $website = trim($_POST["website"]);
     $comment = trim($_POST["comment"]);
 
-    // Validate fields
-    if (empty($first_name) || empty($last_name) || empty($username) || empty($password) || empty($email) || empty($gender)) {
-        $_SESSION["message"] = "All fields are require!";
-        $_SESSION["message_type"] = "error";
-        header("Location: index.php"); // Redirect back to form
-        exit();
-    }
+    // Initialize an error array
+    $errors = [];
 
-    // Username validation
-    if (strlen($username) < 5) {
-        $_SESSION["message"] = "Username must be at least 5 characters long.";
-        $_SESSION["message_type"] = "error";
-        header("Location: index.php");
-        exit();
+    // Backend validation
+    if (empty($first_name)) {
+        $errors[] = "First name is required.";
     }
-
-    // Password validation
-    if (strlen($password) < 8) {
-        $_SESSION["message"] = "Password must be greater than 8.";
-        $_SESSION["message_type"] = "error";
-        header("Location: index.php");
-        exit();
+    if (empty($last_name)) {
+        $errors[] = "Last name is required.";
     }
-
-    // Email validation
+    if (empty($username)) {
+        $errors[] = "Username is required.";
+    }
+    if (empty($password)) {
+        $errors[] = "Password is required.";
+    } elseif (strlen($password) < 7) {
+        $errors[] = "Password must be at least 7 characters long.";
+    } elseif (!preg_match('/[A-Z]/', $password)) {
+        $errors[] = "Password must contain at least one uppercase letter.";
+    } elseif (!preg_match('/[0-9]/', $password)) {
+        $errors[] = "Password must contain at least one digit.";
+    } elseif (!preg_match('/[\W]/', $password)) {
+        $errors[] = "Password must contain at least one special character.";
+    }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION["message"] = "Invalid email format.";
+        $errors[] = "Invalid email .";
+    }
+    if (!empty($website) && !filter_var($website, FILTER_VALIDATE_URL)) {
+        $errors[] = "Invalid website URL.";
+    }
+    if (empty($gender)) {
+        $errors[] = "select a gender.";
+    }
+
+    // If there are errors, store in session and redirect back
+    if (!empty($errors)) {
+        $_SESSION["message"] = implode("<br>", $errors);
         $_SESSION["message_type"] = "error";
         header("Location: index.php");
         exit();
     }
 
-
-    // Encrypting password 
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-
-    $_SESSION["message"] = "Signup successful!";
+    // If successful, store success message and redirect
+    $_SESSION["message"] = "Signup successful! Welcome, " . htmlspecialchars($username) . ".";
     $_SESSION["message_type"] = "success";
-
     header("Location: index.php");
     exit();
 }

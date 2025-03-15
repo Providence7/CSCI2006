@@ -58,11 +58,27 @@ button:hover {
 
 .form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: 15px; /* Space between fields */
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
-
-/* Full-width fields (like comment) */
 .full-width {
     grid-column: span 2;
+}
+
+.error, .success {
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.error {
+    color: #f10d24;
+    border: 1px solid #f5c6cb;
+}
+
+.success {
+    color: #155724;
+    border: 1px solid #c3e6cb;
 }
