@@ -1,0 +1,68 @@
+
+body {
+    font-family: sans-serif;
+    background-color: #efefef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    box-shadow: 0px 0px 10px rgba(4, 4, 4, 0.1);
+    width: 800px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin: 6px 0 4px;
+}
+
+input, select, textarea {
+    width: 70%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius:6px;
+}
+
+/* Submit Button */
+button {
+    width: 15%;
+    background: #05681c;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #f9faf9;
+    color: #05641b;
+}
+
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 15px; /* Space between fields */
+}
+
+/* Full-width fields (like comment) */
+.full-width {
+    grid-column: span 2;
+}
